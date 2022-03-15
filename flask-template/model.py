@@ -12,3 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+def test_capital(users_input):
+    output_dic = {}
+    avaiable_capitals = {"New York": "Albany", "California":"Sacramento", "Texas":"Austin", "Montana":"Helena", "Ohio":"Columbus"}
+    for state, capital in users_input.items():
+        if capital == avaiable_capitals[state]:
+            output_dic["Correct"] += [state]
+        else:
+            output_dic["Incorrect"] += [state]
+    return output_dic
+
+

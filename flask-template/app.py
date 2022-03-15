@@ -15,8 +15,9 @@
 # ---- YOUR APP STARTS HERE ----
 # -- Import section --
 from flask import Flask
-# from flask import render_template
-# from flask import request
+from flask import render_template
+from flask import request
+from model import test_capital
 
 
 # -- Initialization section --
@@ -27,4 +28,13 @@ app = Flask(__name__)
 @app.route('/')
 @app.route('/index')
 def index():
-    return "hello world"
+    return render_template("index.html")
+
+
+@app.route('/results', methods=['GET', 'POST'])
+def results():
+    answers = {"New York": request.form['New York'], "California": request.form['California'], "Texas": request.form['Texas'], "Montana": request.form['Montana'], "Ohio":request.form["Ohio"]}
+    avaiable_capitals = {"New York": "Albany", "California":"Sacramento", "Texas":"Austin", "Montana":"Helena", "Ohio":"Columbus"}
+    final_results = test_capital(answers)
+    max_score = len(final_results["Correct"])
+    return render_template("results.html", overall_score = max_score, all_answers = avaiable_capitals)
