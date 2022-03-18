@@ -3,7 +3,13 @@
         <title>Score and Final Answers</title>
         <link rel="stylesheet" href="../static/css/style.css">
     </head>
+    <p> Scores and Final Answers: </p>
     <body>
-        You have achieved {{overall_score}} and the states with the corresponding capitals are {{all_answers}}.
+        Your Overall Score: {{overall_score}} <br>
+        The states with the corresponding capitals are: <br>
+        {% for n in all_answers %}
+        <li>{{n}}</li>
+        {% endfor %}
+
     </body>
 </html>

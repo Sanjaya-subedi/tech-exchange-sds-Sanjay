@@ -17,15 +17,17 @@ def test_capital(users_input):
   avaiable_capitals = {"New York": "Albany", "California":"Sacramento", "Texas":"Austin", "Montana":"Helena", "Ohio":"Columbus"}
   for state, capital in users_input.items():
     if capital == avaiable_capitals[state]:
-      if not "Correct" in output_dic:
+      if "Correct" not in output_dic:
         output_dic["Correct"] = [state]
       else:
         output_dic["Correct"] += [state]
     else:
-      if not "Incorrect" in output_dic:
+      if "Incorrect" not in output_dic:
         output_dic["Incorrect"] = [state]
       else:
         output_dic["Incorrect"] += [state]
+  if "Correct" not in output_dic.keys():
+      output_dic["Correct"] = []
   return output_dic
 
 

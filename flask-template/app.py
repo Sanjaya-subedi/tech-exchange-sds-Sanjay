@@ -14,6 +14,9 @@
 
 # ---- YOUR APP STARTS HERE ----
 # -- Import section --
+
+
+'''Partner's Name: Lorelyne Chavez'''
 from flask import Flask
 from flask import render_template
 from flask import request
@@ -34,7 +37,15 @@ def index():
 @app.route('/results', methods=['GET', 'POST'])
 def results():
     answers = {"New York": request.form['New York'], "California": request.form['California'], "Texas": request.form['Texas'], "Montana": request.form['Montana'], "Ohio":request.form["Ohio"]}
-    avaiable_capitals = {"New York": "Albany", "California":"Sacramento", "Texas":"Austin", "Montana":"Helena", "Ohio":"Columbus"}
+    avaiable_capitals = ["New York: Albany",
+     "California: Sacramento",
+      "Texas: Austin",
+       "Montana: Helena",
+        "Ohio: Columbus"]
+    for state, capital in answers.items():
+        if not answers.get(state):
+            return ("Error: Please fill up all of the boxes!")
     final_results = test_capital(answers)
+    
     max_score = len(final_results["Correct"])
     return render_template("results.html", overall_score = max_score, all_answers = avaiable_capitals)
